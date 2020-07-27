@@ -1,0 +1,12 @@
+{
+  "name": "histogramTest",
+  "displayName": "histogramTest",
+  "expo": {
+    "name": "histogramTest",
+    "slug": "histogramTest",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-// const screenWidth = Dimensions.get("window").width;
 
-function HistogramBar({text, height, max, color, index, grade}) {
+function HistogramBar({ height, max, grade}) {
   let barChartColor;
   if(height === max){
     barChartColor = '#F67451'
   } else {
-    barChartColor = '#F6745166' //rbg(246,116,81,40)
+    barChartColor = '#F6745166' // 40% opacity rbg(246,116,81,40)
   }
   return (
     <View style={{

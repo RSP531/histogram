@@ -1,72 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
-
-// import Histogram from 'react-native-histogram';
+import HistogramBar from './HistogramBar'
 
 const screenWidth = Dimensions.get("window").width;
 
-// const data = {
-//   labels: ["January", "February", "March", "April", "May", "June"],
-//   datasets: [
-//     {
-//       data: [20, 45, 28, 80, 99, 43]
-//     }
-//   ]
-// };
-// const data = [{ data: [10, 13, 8, 19, 17] }]
-
+const data = {
+  labels: ['V4','V4+','V5-','V5','V5+','V6-','V6'],
+  data: [8,3,10,25,12,6,2],
+  testdata: [80,30,100,25,120,60,20],
+  test: [{votes: 1, grade:'V4'},{votes: 10, grade:'V4+'},{votes: 11, grade:'V5-'},{votes: 20, grade:'V5'},{votes: 9, grade:'V5+'},{votes: 3, grade:'V6-'},{votes: 1, grade:'V6'}]
+}
 
 export default function App() {
+  // let max= Math.max(...data.testdata);
+  let max= Math.max.apply(Math, data.test.map(function(o) { return o.votes; }))
+  console.log('NewMax: ', max)
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app rob!</Text>
       <StatusBar style="auto" />
-      {/* <Histogram data={data} /> */}
-      <BarChart
-        data={{
-          labels: [
-            'Jan',
-            'Feb',
-            'March',
-            'April',
-            'May',
-            'June',
-          ],
-          datasets: [
-            {
-              data: [10, 0, 12, 13, 3, 2, 1],
-            },
-          ],
-        }}
-        width={Dimensions.get('window').width - 20}
-        height={220}
-        yAxisLabel={''}
-        chartConfig={{
-          backgroundColor: 'red',
-          backgroundGradientFrom: '#eff3ff',
-          backgroundGradientTo: '#efefef',
-          decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          // color: '#F67451',
-          style: {
-            borderRadius: 16,
-          },
-        }}
-        style={{
-          marginVertical: 10,
-          borderRadius: 16,
-        }}
-      />
-    </View>
+
+      <View style={{ width: '100%', 
+      height: 128, 
+      backgroundColor: 'honeydew', 
+      justifyContent: 'center', 
+      flexDirection: 'row', 
+      paddingHorizontal:'4%', 
+      alignItems:'flex-end',       
+      paddingBottom: '5%'
+      }}>
+        {
+          data.test.map((item,i) => (
+          <HistogramBar height={item.votes} key={i} max={max} color={'#F67451'} index={i} grade={item.grade}/>
+        ))}
+      </View>
+
+      <Text>Open up App.js to start working on your app rob!</Text>
+    </View >
   );
 }
 

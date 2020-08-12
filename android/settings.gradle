@@ -1,4 +1,10 @@
 rootProject.name = 'histogramTest'
+include ':react-native-text-switch'
+project(':react-native-text-switch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-switch/android')
+include ':react-native-text-switch'
+project(':react-native-text-switch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-switch/android')
+include ':react-native-text-switch'
+project(':react-native-text-switch').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-text-switch/android')
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()

@@ -6141,6 +6141,11 @@ react-native-histogram@^0.2.0:
   resolved "https://registry.yarnpkg.com/react-native-histogram/-/react-native-histogram-0.2.0.tgz#0aa49c997546877ab7fbddd1519865f536450ced"
   integrity sha1-CqScmXVGh3q3+93RUZhl9TZFDO0=
 
+react-native-image-picker@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.3.tgz#eaacd4a1ed9e9887613be31f0765478ca2f18a51"
+  integrity sha512-i/7JDnxKkUGSbFY2i7YqFNn3ncJm1YlcrPKXrXmJ/YUElz8tHkuwknuqBd9QCJivMfHX41cmq4XvdBDwIOtO+A==
+
 react-native-reanimated@~1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.9.0.tgz#38676c99dd585504fdc7331efb45e5f48ec7339a"

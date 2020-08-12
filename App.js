@@ -5,6 +5,8 @@ import HistogramBar from './HistogramBar';
 // import { RNTextSwitch } from 'react-native-text-switch';
 import SlideComponent from './SlideComponent'
 import { Picker } from '@react-native-community/picker';
+import ImagePicker from 'react-native-image-picker';
+
 
 
 const data = {
@@ -14,6 +16,18 @@ const data = {
 export default function App() {
   let max = Math.max.apply(Math, data.test.map(function (i) { return i.votes; }))
   const [language, changeLanguage] = useState('java');
+  const [image, setImage] = useState(null);
+
+  const handleChoosePhoto = () => {
+    const options = {
+      noData: true,
+    };
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        this.setState({ photo: response });
+      }
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -34,6 +48,16 @@ export default function App() {
         <Picker.Item label="JSON" value="json" />
         <Picker.Item label="C Sharp" value="C#" />
       </Picker>
+
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        {image && (
+          <Image
+            source={{ uri: image.uri }}
+            style={{ width: 300, height: 300 }}
+          />
+        )}
+        <Button title="Choose Photo" onPress={handleChoosePhoto} />
+      </View>
       {/* <View style={{
         width: '100%',
         height: 128,

@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^3.8.0",
     "@react-native-community/picker": "1.6.0",
     "expo": "^38.0.8",
     "expo-image-picker": "~8.3.0",

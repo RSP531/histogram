@@ -34,19 +34,8 @@ class App extends React.Component<Props, State> {
     });
   };
 
-  _renderSelectionText = () => {
-    const { selectedIndex } = this.state;
-    const text =
-      selectedIndex === null ? 'No Option Selected' : `Option #${selectedIndex + 1} Selected`;
-    return <Text style={styles.selectionText}>{text}</Text>;
-  };
-
   _renderSectionHeader = (text: string) => {
     return <Text style={styles.sectionHeaderText}>{text}</Text>;
-  };
-
-  _toggleModal = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen });
   };
 
   _renderButtons() {
@@ -58,15 +47,37 @@ class App extends React.Component<Props, State> {
         }}>
         {this._renderSectionHeader('Universal Options')}
         <ShowActionSheetButton
-          title="Options Only"
+          title="Options Only (Delete Profile Photo)"
           onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
+          showActionSheetWithOptions={index => showActionSheetWithOptions({
+            options: ['Delete Profile Picture', 'Select a New Profile Picture', 'Cancel'],
+            destructiveButtonIndex: 0,
+            cancelButtonIndex: 2,
+            tintColor: '#22BFAC'
+          }, buttonIndex => {
+            if (buttonIndex === 0) {
+              console.log('do this_ delete', buttonIndex)
+            } else if (buttonIndex === 1) {
+              console.log('do this_ select New', buttonIndex)
+            }
+          })}
         />
         <ShowActionSheetButton
-          title="Title"
-          withTitle
+          title="Delete and cancel"
+          // withTitle
           onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
+          showActionSheetWithOptions={index => showActionSheetWithOptions({
+            options: ['Delete', 'Cancel'],
+            destructiveButtonIndex: 0,
+            cancelButtonIndex: 1,
+            tintColor: '#22BFAC'
+          }, buttonIndex => {
+            if (buttonIndex === 0) {
+              console.log('do this_ delete', buttonIndex)
+            } else if (buttonIndex === 1) {
+              console.log('do this_ select New', buttonIndex)
+            }
+          })}
         />
         <ShowActionSheetButton
           title="Title & Message"
@@ -76,21 +87,17 @@ class App extends React.Component<Props, State> {
           showActionSheetWithOptions={showActionSheetWithOptions}
         />
         <ShowActionSheetButton
-          title="iPad Anchor"
-          withAnchor
-          withTitle
-          onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
-        />
-        <ShowActionSheetButton
           title="Nested Action Sheets"
           onSelection={index => {
-            if (index < 3) {
+            if (index === 1) { //creates the sub action sheet if button is not 0 or 2 
               showActionSheetWithOptions(
                 {
-                  title: 'Sub Action Sheet',
-                  options: ['One', 'Two', 'Three', 'Done'],
-                  cancelButtonIndex: 3,
+                  title: 'Are you sure?',
+                  message: 'Deleting this set will erase it forever for everyone on the app.',
+                  options: ['test', 'Delete', 'Cancel'],
+                  destructiveButtonIndex: 0,
+                  cancelButtonIndex: 1,
+                  tintColor: '#22BFAC'
                 },
                 this._updateSelectionText
               );
@@ -98,58 +105,42 @@ class App extends React.Component<Props, State> {
           }}
           showActionSheetWithOptions={showActionSheetWithOptions}
         />
-        {this._renderSectionHeader('Android-Only Options')}
         <ShowActionSheetButton
-          title="Icons"
-          withIcons
-          onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
-        />
-        <ShowActionSheetButton
-          title="Title, Message, & Icons"
-          withTitle
-          withMessage
-          withIcons
-          onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
-        />
-        <ShowActionSheetButton
-          title="Use Separators"
-          withTitle
-          withIcons
-          withSeparators
-          onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
-        />
-        <ShowActionSheetButton
-          title="Custom Styles"
-          withTitle
-          withMessage
-          withIcons
-          withCustomStyles
-          onSelection={this._updateSelectionText}
-          showActionSheetWithOptions={showActionSheetWithOptions}
-        />
-        {this._renderSectionHeader('Special Cases')}
-        <TouchableOpacity onPress={this._toggleModal}>
-          <Text style={styles.link}>Open Modal</Text>
-        </TouchableOpacity>
-        {this.state.isModalOpen && (
-          <Modal>
-            <View style={{ flex: 1, padding: 30 }}>
-              <ShowActionSheetButton
-                useModal
-                title="Options Only"
-                onSelection={this._updateSelectionText}
-                showActionSheetWithOptions={showActionSheetWithOptions}
-              />
+          title="Rob's Custom Button"
+          onSelection={index => {
 
-              <TouchableOpacity onPress={this._toggleModal}>
-                <Text style={styles.link}>Close Modal</Text>
-              </TouchableOpacity>
-            </View>
-          </Modal>
-        )}
+            console.log("index", index)
+            if (index < 2) { //creates the sub action sheet if button is not 0 or 2 
+              showActionSheetWithOptions(
+                {
+                  title: 'Are you sure?',
+                  message: 'Deleting this set will erase it forever for everyone on the app.',
+                  options: ['Delete', 'Cancel'],
+                  destructiveButtonIndex: 0,
+                  cancelButtonIndex: 1,
+                  tintColor: '#22BFAC'
+                },
+                this._updateSelectionText
+              );
+            }
+          }}
+          showActionSheetWithOptions={index => {
+            showActionSheetWithOptions(
+              {
+                title: 'Are you sure?',
+                message: 'Deleting this set will erase it forever for everyone on the app.',
+                options: ['Edit', 'test', 'Delete', 'Cancel'],
+                destructiveButtonIndex: 2,
+                cancelButtonIndex: 3,
+                tintColor: '#22BFAC'
+              },
+
+              test => {
+                console.log(test)
+              }
+              // this._updateSelectionText
+            );
+          }} />
       </View>
     );
   }
@@ -164,11 +155,6 @@ class App extends React.Component<Props, State> {
             }
           </Text>
           {this._renderButtons()}
-          {this._renderSelectionText()}
-          <Text style={styles.notes}>
-            Note: Icons and custom text styles are only available on Android. Separators can only be
-            toggled on Android; they always show on iOS.
-          </Text>
         </ScrollView>
       </SafeAreaView>
     );
@@ -200,9 +186,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
   },
-  notes: {
-    marginTop: 32,
-  },
   sectionHeaderText: {
     color: 'orange',
     textAlign: 'center',
@@ -210,15 +193,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
     marginBottom: 10,
-  },
-  selectionText: {
-    textAlign: 'center',
-    color: 'blue',
-    fontSize: 16,
-    marginTop: 20,
-  },
-  link: {
-    fontSize: 15,
-    textDecorationLine: 'underline',
   },
 });

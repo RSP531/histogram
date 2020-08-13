@@ -131,6 +131,18 @@ class App extends React.Component<Props, State> {
 
           }}
           showActionSheetWithOptions={showActionSheetWithOptions}
+        // showActionSheetWithOptions={index => showActionSheetWithOptions({
+        //   options: ['Select a New Profile Picture', 'Delete Profile Picture', 'Cancel'],
+        //   destructiveButtonIndex: 1,
+        //   cancelButtonIndex: 2,
+        //   tintColor: '#22BFAC'
+        // }, buttonIndex => {
+        //   if (buttonIndex === 0) {
+        //     console.log('Delete a Profile Photo', buttonIndex)
+        //   } else if (buttonIndex === 1) {
+        //     console.log('Upload a new Profile Photo', buttonIndex)
+        //   }
+        // })}
 
         // showActionSheetWithOptions={index => {
         //   showActionSheetWithOptions(

@@ -3,7 +3,7 @@ import { Text, View, TextStyle, ViewStyle, findNodeHandle, Button } from 'react-
 import { MaterialIcons, Entypo } from '@expo/vector-icons';
 import { ActionSheetOptions } from '@expo/react-native-action-sheet';
 
-const icon = (name: string) => <MaterialIcons key={name} name={name} size={24} />;
+// const icon = (name: string) => <MaterialIcons key={name} name={name} size={24} />;
 
 interface Props {
   title: string;
@@ -17,8 +17,8 @@ interface Props {
   withMessage?: boolean;
   // withIcons?: boolean;
   withSeparators?: boolean;
-  withCustomStyles?: boolean;
-  withAnchor?: boolean;
+  // withCustomStyles?: boolean;
+  // withAnchor?: boolean;
   useModal?: boolean;
 }
 
@@ -29,17 +29,17 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     withMessage: false,
     // withIcons: false,
     withSeparators: false,
-    withCustomStyles: false,
-    withAnchor: false,
+    // withCustomStyles: false,
+    // withAnchor: false,
     onSelection: null,
     useModal: false,
   };
 
-  _anchorRef = React.createRef<Button>();
+  // _anchorRef = React.createRef<Button>();
 
   _showActionSheet = () => {
     const {
-      withAnchor,
+      // withAnchor,
       withTitle,
       withMessage,
       // withIcons,
@@ -89,9 +89,9 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     //     backgroundColor: 'lightgrey',
     //   }
     //   : undefined;
-    const anchor: number | null = this._anchorRef.current
-      ? findNodeHandle(this._anchorRef.current)
-      : null;
+    // const anchor: number | null = this._anchorRef.current
+    //   ? findNodeHandle(this._anchorRef.current)
+    //   : null;
 
     showActionSheetWithOptions(
       {
@@ -103,7 +103,7 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
         message,
         // icons,
         // //iPad only
-        anchor: withAnchor && anchor ? anchor : undefined,
+        // anchor: withAnchor && anchor ? anchor : undefined,
         // Android only
         // tintIcons: true,
         // // Android only; default is true
@@ -137,7 +137,8 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
           name="code"
           backgroundColor="#3e3e3e"
           onPress={this._showActionSheet}
-          ref={this._anchorRef}>
+        // ref={this._anchorRef}
+        >
           <Text
             style={{
               fontSize: 15,

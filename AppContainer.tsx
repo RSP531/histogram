@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import {
   ActionSheetProvider,
@@ -143,24 +144,8 @@ class App extends React.Component<Props, State> {
         //     console.log('Upload a new Profile Photo', buttonIndex)
         //   }
         // })}
-
-        // showActionSheetWithOptions={index => {
-        //   showActionSheetWithOptions(
-        //     {
-        //       title: 'Are you sure?',
-        //       message: 'Deleting this set will erase it forever for everyone on the app.',
-        //       options: ['Edit', 'test', 'Delete', 'Cancel'],
-        //       destructiveButtonIndex: 2,
-        //       cancelButtonIndex: 3,
-        //       tintColor: '#22BFAC'
-        //     },
-        //     // test => {
-        //     //   console.log(test)
-        //     // }
-        //     this._updateSelectionText
-        //   );
-        // }}
         />
+        <Button title="test" />
       </View>
     );
   }

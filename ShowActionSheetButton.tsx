@@ -13,7 +13,6 @@ interface Props {
   withTitle?: boolean;
   tintColor?: string;
   withMessage?: boolean;
-  withSeparators?: boolean;
   useModal?: boolean;
 }
 
@@ -22,7 +21,6 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
   static defaultProps = {
     withTitle: false,
     withMessage: false,
-    withSeparators: false,
     onSelection: null,
     useModal: false,
   };
@@ -31,7 +29,6 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     const {
       withTitle,
       withMessage,
-      withSeparators,
       onSelection,
       showActionSheetWithOptions,
     } = this.props;
@@ -54,7 +51,6 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
         title,
         tintColor,
         message,
-        showSeparators: withSeparators,
       },
       (buttonIndex: number) => {
         // Do something here depending on the button index selected

@@ -129,7 +129,6 @@ class App extends React.Component<Props, State> {
                 }
               );
             }
-
           }}
           showActionSheetWithOptions={showActionSheetWithOptions}
         // showActionSheetWithOptions={index => showActionSheetWithOptions({

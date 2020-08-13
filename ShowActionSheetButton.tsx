@@ -41,7 +41,7 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     const tintColor = '#22BFAC';
     const title = withTitle ? 'Are you sure?' : undefined;
     const message = withMessage
-      ? 'Deleting this set will erase it forever fro everyone on the app.'
+      ? 'Deleting this set will erase it forever for everyone on the app.'
       : undefined;
     const destructiveButtonIndex = 1;
     const cancelButtonIndex = 2;
@@ -74,7 +74,6 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
           name="code"
           backgroundColor="#3e3e3e"
           onPress={this._showActionSheet}
-        // ref={this._anchorRef}
         >
           <Text
             style={{

@@ -56,9 +56,9 @@ class App extends React.Component<Props, State> {
             tintColor: '#22BFAC'
           }, buttonIndex => {
             if (buttonIndex === 0) {
-              console.log('do this_ delete', buttonIndex)
+              console.log('Delete a Profile Photo', buttonIndex)
             } else if (buttonIndex === 1) {
-              console.log('do this_ select New', buttonIndex)
+              console.log('Upload a new Profile Photo', buttonIndex)
             }
           })}
         />
@@ -108,9 +108,10 @@ class App extends React.Component<Props, State> {
         <ShowActionSheetButton
           title="Rob's Custom Button"
           onSelection={index => {
-
-            console.log("index", index)
-            if (index < 2) { //creates the sub action sheet if button is not 0 or 2 
+            // console.log("index", index)
+            if (index === 0) {
+              console.log('navigate to edit set screen')
+            } else if (index === 1) {//creates the sub action sheet if button is not 0 or 2 
               showActionSheetWithOptions(
                 {
                   title: 'Are you sure?',
@@ -119,28 +120,35 @@ class App extends React.Component<Props, State> {
                   destructiveButtonIndex: 0,
                   cancelButtonIndex: 1,
                   tintColor: '#22BFAC'
-                },
-                this._updateSelectionText
+                }, buttonIndex => {
+                  if (buttonIndex === 0) {
+                    console.log('Delete a route permanently')
+                  }
+                  this._updateSelectionText
+                }
               );
             }
-          }}
-          showActionSheetWithOptions={index => {
-            showActionSheetWithOptions(
-              {
-                title: 'Are you sure?',
-                message: 'Deleting this set will erase it forever for everyone on the app.',
-                options: ['Edit', 'test', 'Delete', 'Cancel'],
-                destructiveButtonIndex: 2,
-                cancelButtonIndex: 3,
-                tintColor: '#22BFAC'
-              },
 
-              test => {
-                console.log(test)
-              }
-              // this._updateSelectionText
-            );
-          }} />
+          }}
+          showActionSheetWithOptions={showActionSheetWithOptions}
+
+        // showActionSheetWithOptions={index => {
+        //   showActionSheetWithOptions(
+        //     {
+        //       title: 'Are you sure?',
+        //       message: 'Deleting this set will erase it forever for everyone on the app.',
+        //       options: ['Edit', 'test', 'Delete', 'Cancel'],
+        //       destructiveButtonIndex: 2,
+        //       cancelButtonIndex: 3,
+        //       tintColor: '#22BFAC'
+        //     },
+        //     // test => {
+        //     //   console.log(test)
+        //     // }
+        //     this._updateSelectionText
+        //   );
+        // }}
+        />
       </View>
     );
   }

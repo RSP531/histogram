@@ -51,7 +51,7 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     } = this.props;
 
     // Same interface as https://facebook.github.io/react-native/docs/actionsheetios.html
-    const options = ['Delete Profile Picture', 'Select A New Profile', 'Cancel'];
+    const options = ['Edit', 'Delete', 'Cancel'];
     // const icons = withIcons //delete not necessary
     //   ? [icon('delete'), icon('save'), icon('share'), icon('cancel')]
     //   : undefined;
@@ -60,7 +60,7 @@ export default class ShowActionSheetButton extends React.PureComponent<Props> {
     const message = withMessage
       ? 'Deleting this set will erase it forever fro everyone on the app.'
       : undefined;
-    const destructiveButtonIndex = 0;
+    const destructiveButtonIndex = 1;
     const cancelButtonIndex = 2;
     // const textStyle: TextStyle | undefined = withCustomStyles
     //   ? {
